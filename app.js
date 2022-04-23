@@ -7,12 +7,12 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'name',
-      message: 'What is your name Dickhead? (Required)',
+      message: 'What is your name? (Required)',
       validate: nameInput => {
         if (nameInput) {
           return true;
         } else {
-          console.log('Please enter your name Asshole!');
+          console.log('Please enter your name!');
           return false;
         }
       }
@@ -20,12 +20,12 @@ const promptUser = () => {
     {
       type: 'input',
       name: 'github',
-      message: 'Enter your GitHub Username Dickweed (Required)',
+      message: 'Enter your GitHub Username (Required)',
       validate: githubInput => {
         if (githubInput) {
           return true;
         } else {
-          console.log('Please enter your GitHub username or go blow yourself!');
+          console.log('Please enter your GitHub username!');
           return false;
         }
       }
@@ -33,13 +33,13 @@ const promptUser = () => {
     {
       type: 'confirm',
       name: 'confirmAbout',
-      message: 'Enter some information about yourself or else asswhipe for an "About" section?',
+      message: 'Would you like to enter some information about yourself for an "About" section?',
       default: true
     },
     {
       type: 'input',
       name: 'about',
-      message: 'Provide some information about yourself or ELSE you stinky Ahole:',
+      message: 'Provide some information about yourself:',
       when: ({ confirmAbout }) => confirmAbout
     }
   ]);
@@ -129,11 +129,11 @@ Add a New Project
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
-    // will be uncommented in lesson 4
-    // const pageHTML = generatePage(portfolioData);
-    // fs.writeFile('./index.html', pageHTML, err => {
-    //   if (err) throw new Error(err);
-    //   console.log('Page created! Check out index.html in this directory to see it!');
-    // });
+    const pageHTML = generatePage(portfolioData);
+
+    fs.writeFile('./index.html', pageHTML, err => {
+      if (err) throw new Error(err);
+
+      console.log('Page created! Check out index.html in this directory to see it!');
+    });
   });
